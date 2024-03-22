@@ -1,13 +1,23 @@
-import { CompletedTodo } from "./CompletedTodo"
+import styled from 'styled-components'
+import { CompletedTodo } from './CompletedTodo'
 
-export const CompletedTodoList = ({completedTodos, onDeleteCompletedTodo}) => {
+const SCompletedTodoList = styled.ul`
+  padding: 0;
+`
+
+export const CompletedTodoList = ({
+  completedTodos,
+  onDeleteCompletedTodo,
+}) => {
   return (
-    <>
-      <ul>
-        {completedTodos.map((todo) => (
-          <CompletedTodo key={todo.id} todo={todo} onDeleteCompletedTodo={onDeleteCompletedTodo} />
-        ))}
-      </ul>
-    </>
+    <SCompletedTodoList>
+      {completedTodos.map((todo) => (
+        <CompletedTodo
+          key={todo.id}
+          todo={todo}
+          onDeleteCompletedTodo={onDeleteCompletedTodo}
+        />
+      ))}
+    </SCompletedTodoList>
   )
 }
