@@ -1,38 +1,29 @@
-import { useState } from "react"
+import styled from 'styled-components'
+import { SButton } from '../styles/Button'
 
-export const Todo = ({todo, onCompleteTodo, onToggleEditTodo, onSaveTodo}) => {
-  const [updateTodoText, setUpdateTodoText] = useState(todo.text)
+const STodo = styled.div`
+  padding: 10px 15px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 3px solid red;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
 
-  const handleToggleEditTodo = () => {
-    onToggleEditTodo()
+  span {
+    margin-left: 10px;
   }
+`
 
-  const handleSaveTodo = () => {
-    if (updateTodoText.trim()) {
-      onSaveTodo(updateTodoText)
-    }
-  }
+const SCompleteButton = styled(SButton)`
+  background-color: gray;
+`
 
-  const handleCompleteTodo = () => {
-    onCompleteTodo()
-  }
-  
+export const Todo = ({ todo, onCompleteTodo }) => {
   return (
-    <div>
-      {!todo.isEdit && 
-        <div className="todo">
-          <button className="complete-button" onClick={handleCompleteTodo}>完了</button>
-          <span className="todo-text">{todo.text}</span>
-          <button className="edit-button" onClick={handleToggleEditTodo}>編集</button>
-        </div>
-      }
-      {todo.isEdit && 
-        <div className="edit-todo-form">
-          <input type="text" className="edit-todo-input" onChange={(e) => setUpdateTodoText(e.target.value)} value={updateTodoText} />
-          <button className="save-button" onClick={handleSaveTodo}>更新</button>
-          <button className="return-button" onClick={handleToggleEditTodo}>戻す</button>
-        </div>
-      }
-    </div>
+    <STodo>
+      <SCompleteButton onClick={onCompleteTodo}>完了</SCompleteButton>
+      <span>{todo.text}</span>
+    </STodo>
   )
 }

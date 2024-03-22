@@ -1,6 +1,28 @@
-import { useState } from "react"
+import { useState } from 'react'
+import styled from 'styled-components'
+import { SButton } from '../styles/Button'
 
-export const AddTodoForm = ({onAddTodo, disabled}) => {
+const SAddTodoForm = styled.div`
+  font-size: 18px;
+  width: 100%;
+  display: flex;
+  margin-top: 20px;
+`
+
+const SAddTodoInput = styled.input`
+  flex: 5;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+`
+const SAddTodoButton = styled(SButton)`
+  flex: 1;
+  margin-left: 5px;
+  background-color: green;
+`
+
+export const AddTodoForm = ({ onAddTodo, disabled }) => {
   const [todoText, setTodoText] = useState('')
 
   const handleClick = () => {
@@ -11,11 +33,15 @@ export const AddTodoForm = ({onAddTodo, disabled}) => {
   }
 
   return (
-    <>
-      <div className="add-todo-form">
-        <input type="text" className="add-todo-input" onChange={(e) => setTodoText(e.target.value)} value={todoText} />
-        <button className="add-button" onClick={handleClick} disabled={disabled}>保存</button>
-      </div>
-    </>
+    <SAddTodoForm>
+      <SAddTodoInput
+        type='text'
+        onChange={(e) => setTodoText(e.target.value)}
+        value={todoText}
+      />
+      <SAddTodoButton onClick={handleClick} disabled={disabled}>
+        保存
+      </SAddTodoButton>
+    </SAddTodoForm>
   )
 }
